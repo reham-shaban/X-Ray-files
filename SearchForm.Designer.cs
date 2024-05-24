@@ -14,6 +14,9 @@
         private System.Windows.Forms.Label labelEndDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxFolderPath;
+        private System.Windows.Forms.Button buttonChooseFolder;
 
         protected override void Dispose(bool disposing)
         {
@@ -38,6 +41,8 @@
             this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxFolderPath = new System.Windows.Forms.TextBox();
+            this.buttonChooseFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonSearch
@@ -133,13 +138,32 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
             this.label1.TabIndex = 11;
-            this.label1.Text = "file name: ";
+            this.label1.Text = "File Name:";
+            // 
+            // textBoxFolderPath
+            // 
+            this.textBoxFolderPath.Location = new System.Drawing.Point(50, 8);
+            this.textBoxFolderPath.Name = "textBoxFolderPath";
+            this.textBoxFolderPath.Size = new System.Drawing.Size(615, 22);
+            this.textBoxFolderPath.TabIndex = 12;
+            // 
+            // buttonChooseFolder
+            // 
+            this.buttonChooseFolder.Location = new System.Drawing.Point(672, 7);
+            this.buttonChooseFolder.Name = "buttonChooseFolder";
+            this.buttonChooseFolder.Size = new System.Drawing.Size(82, 23);
+            this.buttonChooseFolder.TabIndex = 13;
+            this.buttonChooseFolder.Text = "Choose Folder";
+            this.buttonChooseFolder.UseVisualStyleBackColor = true;
+            this.buttonChooseFolder.Click += new System.EventHandler(this.buttonChooseFolder_Click);
             // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonChooseFolder);
+            this.Controls.Add(this.textBoxFolderPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePickerEndDate);
             this.Controls.Add(this.dateTimePickerStartDate);
@@ -156,9 +180,7 @@
             this.Text = "SearchForm";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        private System.Windows.Forms.Label label1;
     }
 }

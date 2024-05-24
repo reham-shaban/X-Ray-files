@@ -37,7 +37,7 @@
             this.compareButton = new System.Windows.Forms.Button();
             this.recordButton = new System.Windows.Forms.Button();
             this.saveTextButton = new System.Windows.Forms.Button();
-            this.compressButton = new System.Windows.Forms.Button(); // New button for compression
+            this.compressButton = new System.Windows.Forms.Button();
             this.radioButtonImage1 = new System.Windows.Forms.RadioButton();
             this.radioButtonImage2 = new System.Windows.Forms.RadioButton();
             this.textBoxComment = new System.Windows.Forms.TextBox();
@@ -86,7 +86,7 @@
             // 
             // compressButton
             // 
-            this.compressButton.Location = new System.Drawing.Point(600, 510); // New button for compression
+            this.compressButton.Location = new System.Drawing.Point(600, 510);
             this.compressButton.Margin = new System.Windows.Forms.Padding(4);
             this.compressButton.Name = "compressButton";
             this.compressButton.Size = new System.Drawing.Size(200, 62);
@@ -186,7 +186,7 @@
             this.Controls.Add(this.saveTextButton);
             this.Controls.Add(this.textBoxComment);
             this.Controls.Add(this.recordButton);
-            this.Controls.Add(this.compressButton); // Adding the new button to the form
+            this.Controls.Add(this.compressButton);
             this.Controls.Add(this.compareButton);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);

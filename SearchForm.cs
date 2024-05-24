@@ -9,14 +9,41 @@ namespace Segment_Color_Mappin
 {
     public partial class SearchForm : Form
     {
+        private string selectedFolderPath;
+
         public SearchForm()
         {
             InitializeComponent();
+            // Set the default folder path
+            selectedFolderPath = @"C:\Users\Reham\Desktop\X-Ray";
+            textBoxFolderPath.Text = selectedFolderPath; // Display the default path in a textbox
+
+            // Set default data to "all times"
+            dateTimePickerStartDate.Value = DateTimePicker.MinimumDateTime;
+            dateTimePickerEndDate.Value = DateTimePicker.MaximumDateTime;
+        }
+
+        private void buttonChooseFolder_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    selectedFolderPath = folderDialog.SelectedPath;
+                    textBoxFolderPath.Text = selectedFolderPath; // Display the selected path in a textbox
+                }
+            }
         }
 
         // Search button click event handler
         private async void buttonSearch_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFolderPath))
+            {
+                MessageBox.Show("Please choose a folder first.", "Folder Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Get the search query from the text box
             string searchQuery = textBoxSearch.Text.Trim();
 
@@ -25,8 +52,8 @@ namespace Segment_Color_Mappin
             bool isMaxSizeValid = long.TryParse(textBoxMaxSize.Text, out long maxSize);
 
             // Get the date range from the date pickers
-            DateTime? startDate = dateTimePickerStartDate.Value;
-            DateTime? endDate = dateTimePickerEndDate.Value;
+            DateTime? startDate = dateTimePickerStartDate.Value == DateTimePicker.MinimumDateTime ? (DateTime?)null : dateTimePickerStartDate.Value;
+            DateTime? endDate = dateTimePickerEndDate.Value == DateTimePicker.MaximumDateTime ? (DateTime?)null : dateTimePickerEndDate.Value;
 
             // Set default values if size criteria are not specified
             if (!isMinSizeValid) minSize = 0;
@@ -60,8 +87,7 @@ namespace Segment_Color_Mappin
             // Clear the previous search results
             listBoxResults.Items.Clear();
 
-            // Specify the directory and file extensions to search
-            string directoryPath = @"C:\Users\Reham\Desktop\X-Ray";
+            // Specify the file extensions to search
             string[] fileExtensions = { "*.jpg", "*.png", "*.bmp", "*.gif" };
 
             List<string> imageFiles = new List<string>();
@@ -69,7 +95,7 @@ namespace Segment_Color_Mappin
             // Get a list of image files in the specified directory
             foreach (string fileExtension in fileExtensions)
             {
-                imageFiles.AddRange(await Task.Run(() => Directory.GetFiles(directoryPath, fileExtension)));
+                imageFiles.AddRange(await Task.Run(() => Directory.GetFiles(selectedFolderPath, fileExtension)));
             }
 
             // Search for images that match the search query, size, and date criteria
