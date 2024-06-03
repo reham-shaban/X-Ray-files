@@ -51,5 +51,11 @@ namespace Segment_Color_Mappin
             Fourier_Transform fourierTransform = new Fourier_Transform();
             fourierTransform.Show();
         }
+
+        private void BtnShareToTelegram_Click(object sender, EventArgs e)
+        {
+            ShareToTelegram shareToTelegram = new ShareToTelegram();
+            shareToTelegram.Show();
+        }
     }
 }

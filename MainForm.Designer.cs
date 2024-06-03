@@ -11,6 +11,7 @@
         private System.Windows.Forms.Button btnImageAnalysis;
         private System.Windows.Forms.Button btnImageCropper;
         private System.Windows.Forms.Button btnFourierTransform;
+        private System.Windows.Forms.Button btnShareToTelegram;
 
         protected override void Dispose(bool disposing)
         {
@@ -30,6 +31,7 @@
             this.btnImageAnalysis = new System.Windows.Forms.Button();
             this.btnImageCropper = new System.Windows.Forms.Button();
             this.btnFourierTransform = new System.Windows.Forms.Button();
+            this.btnShareToTelegram = new System.Windows.Forms.Button();
 
             this.SuspendLayout();
 
@@ -97,9 +99,18 @@
             this.btnFourierTransform.Click += new System.EventHandler(this.BtnFourierTransform_Click);
 
             // 
+            // btnShareToTelegram
+            // 
+            this.btnShareToTelegram.Location = new System.Drawing.Point(30, 310);
+            this.btnShareToTelegram.Name = "btnShareToTelegram";
+            this.btnShareToTelegram.Size = new System.Drawing.Size(200, 30);
+            this.btnShareToTelegram.Text = "Open Share to Telegram";
+            this.btnShareToTelegram.Click += new System.EventHandler(this.BtnShareToTelegram_Click);
+
+            // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(280, 320);
+            this.ClientSize = new System.Drawing.Size(280, 360);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.btnSearchForm);
             this.Controls.Add(this.btnImageCompare);
@@ -107,6 +118,7 @@
             this.Controls.Add(this.btnImageAnalysis);
             this.Controls.Add(this.btnImageCropper);
             this.Controls.Add(this.btnFourierTransform);
+            this.Controls.Add(this.btnShareToTelegram);
             this.Text = "Main Form";
             this.ResumeLayout(false);
         }

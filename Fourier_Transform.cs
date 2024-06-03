@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
-using MathNet.Numerics.IntegralTransforms;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 using AForge.Imaging;
 using AForge.Math;
-
+using MathNet.Numerics.IntegralTransforms;
+using System.Diagnostics;
 
 namespace Segment_Color_Mappin
 {
@@ -20,12 +21,15 @@ namespace Segment_Color_Mappin
             InitializeComponent();
         }
 
+        // Upload Image
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files (*.jpg)|*.jpg|PNG files (*.png)|*.png|All Files (*.*)|*.*";
+                OpenFileDialog dialog = new OpenFileDialog
+                {
+                    Filter = "Image Files|*.jpg;*.jpeg;*.png|All Files|*.*"
+                };
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -41,6 +45,7 @@ namespace Segment_Color_Mappin
             }
         }
 
+        // Enhance Image
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -67,7 +72,7 @@ namespace Segment_Color_Mappin
                 complexImage.BackwardFourierTransform();
 
                 // Convert complex image back to bitmap
-                Bitmap enhancedImage = complexImage.ToBitmap();
+                enhancedImage = complexImage.ToBitmap();
 
                 // Display the enhanced image
                 image1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -76,6 +81,36 @@ namespace Segment_Color_Mappin
             catch (Exception ex)
             {
                 MessageBox.Show("Error processing image: " + ex.Message);
+            }
+        }
+
+        // Save Image
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (image1.Image != null)
+                {
+                    SaveFileDialog saveDialog = new SaveFileDialog
+                    {
+                        Filter = "Image Files|*.jpg;*.jpeg;*.png|All Files|*.*"
+                    };
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string savePath = saveDialog.FileName;
+                        image1.Image.Save(savePath);
+                        MessageBox.Show("Image saved successfully.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No image to save.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving image: " + ex.Message);
             }
         }
 
